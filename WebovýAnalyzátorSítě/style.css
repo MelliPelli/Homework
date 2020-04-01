@@ -1,0 +1,16 @@
+body{
+    background:#F0FFFF;
+}
+
+h1{
+    font-style:"Times New Roman", Times, serif;
+}
+
+ul{
+    width:30%;
+    border:40px;
+    background-color:rgb(255, 228, 196);
+    float:bottom;
+    box-shadow: 2px 2px 2px rgb(250, 208, 157);
+
+}
