@@ -1,3 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Adresy</title>
+<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<h1>Počítání IP Adres</h1>
+<p>Vložte IP adresu</p>
+
+<form method="post" action="php.php">
+<ul>
+    <input type="number" class="input" placeholder="192" id="k1" name="o1" min="0" max="255" value="" required="">
+    <input type="number" class="input" placeholder="168" id="k2" name="o2" min="0" max="255" value="" required="">
+    <input type="number" class="input" placeholder="1" id="k3" name="o3" min="0" max="255" value="" required="">
+    <input type="number" class="input" placeholder="0" id="k4" name="o4" min="0" max="255" value="" required="">
+    /
+    <input type="number" id="prefix" placeholder="24" class="input" name="prefix" min="0" max="32" value="" required="">
+    <input type="submit" name = "spocitej" value = "Vypočítej">
+</ul>
+</form>
+
 <?php
         // ip adresa na binár //
         
@@ -376,6 +402,7 @@ break;
     echo ".";   
     echo $host;
     echo "<br>";
+    
     echo "<b>binár:</b>";
         echo $bin;
         echo ".";
@@ -412,3 +439,6 @@ break;
     echo $host;
 
         ?>
+
+</body>
+</html>
