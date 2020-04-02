@@ -11,6 +11,6 @@
   
   
   
-                                                                                                    Spoluautor: Waldemar Kotmel
+                                                                       Spoluautor: Waldemar Kotmel
   
 
