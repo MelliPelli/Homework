@@ -1,2 +1,2 @@
 # Návrh domácí sítě 
-Vytvořila jsem dokument pro návrh domácí sítě za pomoci Cisco packet treaceru, wordu a malování.
+Vytvořila jsem dokument pro návrh domácí sítě za pomoci Cisco packet traceru, wordu a malování.
