@@ -25,7 +25,7 @@
                 <input type="text" id="form_sname" name="b" required="">
                 <span class="error_form" id="sname_error_message"></span>
                 <label>
-                    Second Name
+                    Last Name
                 </label>
             </div>
             <div>
