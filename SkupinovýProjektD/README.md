@@ -4,8 +4,7 @@
 Vytvořili jsme interaktivní mapu, která umí zobrazit města z databáze.
 
 Matice odpovědnosti:
-                     Kabátková Dominika: HTML, PHP
-                     Waldemar Kotmel: CSS, Databáze
+                     Kabátková Dominika: HTML a PHP, Waldemar Kotmel: CSS a Databáze
 
                                                                         Spoluautor: Waldemar Kotmel
 
