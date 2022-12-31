@@ -1,0 +1,1 @@
+Na projektu pracoval/a: *Fuks Jiri a Kabatkova Dominika*
