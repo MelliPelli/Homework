@@ -1,1 +1,186 @@
 
+<?php
+
+$response = array();
+
+try {
+
+    // Get the user's weight and height from the request
+
+    @$weight = $_GET['weight'];
+
+    @$height = $_GET['height'];
+
+    // Get the type of response from the URL
+
+    @$type = $_GET['type'];
+
+    // Validate the weight and height values
+
+    if (@!isset($weight) || !isset($height)) {
+
+        throw new InvalidArgumentException("weight or height parameter is missing", 400);
+
+    }
+
+    if (@!is_numeric($weight)) {
+
+        throw new InvalidArgumentException("weight is not a number", 400);
+
+    }
+
+    if (@!is_numeric($height)) {
+
+        throw new InvalidArgumentException("height is not a number", 400);
+
+    }
+
+    if ($weight <= 0 || $height <= 0) {
+
+        throw new InvalidArgumentException("Invalid weight or height", 400);
+
+    }
+
+    // Calculate the BMI using the formula: weight (kg) / height^2 (m^2)
+
+    $bmi = $weight / ($height * $height);
+
+    // Round the BMI to two decimal places
+
+    $bmi = round($bmi, 2);
+
+    //set the result based on bmi value
+
+    $result = '';
+
+    if ($bmi < 18.5) {
+
+        $result = "underweight";
+
+    } elseif ($bmi >= 18.5 && $bmi <= 25.0) {
+
+        $result = "normal weight";
+
+    } elseif ($bmi > 25.0 && $bmi <= 30.0) {
+
+        $result = "overweight";
+
+    } elseif ($bmi > 30.0) {
+
+        $result = "obesity";
+
+    }
+
+    $response = array('status' => 'ok', 'bmi' => $bmi, 'result' => $result);
+
+} catch (InvalidArgumentException $e) {
+
+    http_response_code($e->getCode());
+
+    $response = array('status' => 'something went wrong', 'error' => $e->getMessage());
+
+} catch (Exception $e) {
+
+    http_response_code(500);
+
+    $response = array('status' => 'something went wrong', 'error' => "Internal Server Error", 'details' => $e->getMessage());
+
+  }
+
+  // Check the type of response requested
+
+  if ($response['status'] == 'something went wrong') {
+
+  header('Content-Type: application/json');
+
+  echo json_encode($response);
+
+  } else {
+
+  if ($type == 'csv') {
+
+  // Set the headers for a CSV response
+
+  header('Content-Type: text/html');
+
+  $response = array(
+
+  array('status', 'bmi', 'result'),
+
+  array('ok', $bmi, $result)
+
+  );
+
+  echo "<table>";
+
+  foreach ($response as $line) {
+
+  echo "<tr>";
+
+  foreach ($line as $cell) {
+
+  echo "<td>" . htmlspecialchars($cell) . "</td>";
+
+  }
+
+  echo "</tr>\n";
+
+  }
+
+  echo "</table>";
+
+  } elseif ($type == 'xml') {
+
+  // Set the headers for an XML response
+
+  header('Content-Type: text/xml');
+
+  header('Content-Disposition: inline; filename="bmi.xml"');
+
+  $xml = new SimpleXMLElement('<root/>');
+
+  array_to_xml($response, $xml);
+
+  echo $xml->asXML();
+
+  } else {
+
+  // Default to a JSON response
+
+  header('Content-Type: application/json');
+
+  echo json_encode($response);
+
+  }
+
+  }
+
+  // function to convert array to xml
+
+  function array_to_xml($data, &$xml_data) {
+
+  foreach($data as $key => $value) {
+
+  if(is_array($value)) {
+
+  if(is_numeric($key)){
+
+  $key = 'item'.$key; //dealing with <0/>..<n/> issues
+
+  }
+
+  $subnode = $xml_data->addChild($key);
+
+  array_to_xml($value, $subnode);
+
+  } else {
+
+  $xml_data->addChild("$key",htmlspecialchars("$value"));
+
+  }
+
+  }
+
+}
+
+?>
