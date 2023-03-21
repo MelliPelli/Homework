@@ -19,3 +19,6 @@ ___
 ___
 ## Dockerfile
 ![](https://github.com/MelliPelli/Homework/blob/master/doc/obr/Dockerfile.png)
+
+___
+spoluautor: Dontjirka
