@@ -26,3 +26,6 @@ ___
 ___
 ## Ukázka databáze
 ![](https://github.com/MelliPelli/Homework/blob/master/pap/img/database.png)
+
+___
+spoluautor: Dontjirka
